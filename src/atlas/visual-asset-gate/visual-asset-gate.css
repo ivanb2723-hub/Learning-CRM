@@ -1,0 +1,294 @@
+.visual-asset-gate {
+  min-width: 0;
+  min-height: 600px;
+  height: 100%;
+  color: #102748;
+  background:
+    radial-gradient(circle at 67% 49%, rgb(75 157 232 / 10%), transparent 26%),
+    radial-gradient(circle at 29% 57%, rgb(26 169 154 / 9%), transparent 28%),
+    linear-gradient(180deg, #fbfdff 0%, #f2f7fb 100%);
+}
+
+.visual-asset-gate__header {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 28px 36px;
+  pointer-events: none;
+}
+
+.visual-asset-gate__eyebrow {
+  color: #4384c9;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.visual-asset-gate__header h1 {
+  margin: 7px 0 4px;
+  font-size: 24px;
+  letter-spacing: -0.035em;
+}
+
+.visual-asset-gate__header p {
+  margin: 0;
+  color: #7889a0;
+  font-size: 12px;
+}
+
+.visual-asset-gate__status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 8px;
+  color: #6b7d95;
+  font-size: 9px;
+  font-weight: 720;
+  letter-spacing: 0.1em;
+}
+
+.visual-asset-gate__status i {
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, #1aa99a, #2f80ed);
+}
+
+.visual-asset-gate__canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.visual-asset-gate .react-flow__pane { cursor: grab; }
+.visual-asset-gate .react-flow__pane:active { cursor: grabbing; }
+.visual-asset-gate .react-flow__node {
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.visual-asset-gate .react-flow__node:focus { outline: none; }
+
+.visual-asset-node {
+  position: relative;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.visual-asset-node--core {
+  width: 500px;
+  height: 320px;
+}
+
+.visual-asset-node--resources {
+  width: 640px;
+  height: 335px;
+}
+
+.visual-asset-node__image {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  filter: saturate(0.96) drop-shadow(0 20px 22px rgb(47 78 112 / 8%));
+  transition: filter 220ms ease, transform 220ms ease;
+}
+
+.visual-asset-node--core .visual-asset-node__image {
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 320px;
+}
+
+.visual-asset-node--resources .visual-asset-node__image {
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 335px;
+}
+
+.visual-asset-node:hover .visual-asset-node__image,
+.visual-asset-node.is-selected .visual-asset-node__image {
+  filter: saturate(1.04) drop-shadow(0 24px 25px rgb(47 128 237 / 17%));
+  transform: translateY(-3px);
+}
+
+.visual-asset-node__focus-ring {
+  position: absolute;
+  z-index: 1;
+  top: 14%;
+  left: 3%;
+  width: 270px;
+  height: 250px;
+  border: 1px solid transparent;
+  border-radius: 46%;
+  opacity: 0;
+  box-shadow: 0 0 0 12px rgb(47 128 237 / 5%);
+  transition: border-color 180ms ease, opacity 180ms ease, transform 220ms ease;
+}
+
+.visual-asset-node--resources .visual-asset-node__focus-ring {
+  top: 9%;
+  right: 4%;
+  left: auto;
+  width: 455px;
+  height: 292px;
+  border-radius: 35%;
+}
+
+.visual-asset-node:hover .visual-asset-node__focus-ring,
+.visual-asset-node.is-selected .visual-asset-node__focus-ring {
+  border-color: rgb(47 128 237 / 24%);
+  opacity: 1;
+  transform: scale(1.025);
+}
+
+.visual-asset-node--resources:hover .visual-asset-node__focus-ring,
+.visual-asset-node--resources.is-selected .visual-asset-node__focus-ring {
+  border-color: rgb(26 169 154 / 30%);
+  box-shadow: 0 0 0 12px rgb(26 169 154 / 5%);
+}
+
+.visual-asset-node__anchor {
+  position: absolute;
+  z-index: 4;
+  right: 38%;
+  bottom: 22%;
+  width: 10px;
+  height: 10px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: #2f80ed;
+  box-shadow: 0 0 0 6px rgb(47 128 237 / 12%);
+}
+
+.visual-asset-node--resources .visual-asset-node__anchor {
+  right: 5%;
+  bottom: 15%;
+  background: #1aa99a;
+  box-shadow: 0 0 0 6px rgb(26 169 154 / 12%);
+}
+
+.visual-asset-node__annotation {
+  position: absolute;
+  z-index: 5;
+  top: 30px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 210px;
+  pointer-events: none;
+}
+
+.visual-asset-node--resources .visual-asset-node__annotation {
+  top: 54px;
+  right: auto;
+  left: 0;
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.visual-asset-node__leader {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, rgb(47 128 237 / 70%), rgb(47 128 237 / 8%));
+}
+
+.visual-asset-node--resources .visual-asset-node__leader {
+  background: linear-gradient(90deg, rgb(26 169 154 / 8%), rgb(26 169 154 / 74%));
+}
+
+.visual-asset-node__annotation strong,
+.visual-asset-node__annotation small {
+  display: block;
+  white-space: nowrap;
+}
+
+.visual-asset-node__annotation strong {
+  font-size: 14px;
+  font-weight: 760;
+}
+
+.visual-asset-node__annotation small {
+  margin-top: 3px;
+  color: #72839b;
+  font-size: 10px;
+}
+
+.visual-asset-gate__relation {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.visual-asset-gate__relation path {
+  fill: none;
+  stroke: url(#gate-relation);
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.visual-asset-gate__relation-glow {
+  stroke-width: 12px !important;
+  opacity: 0.1;
+}
+
+.visual-asset-gate__controls {
+  position: absolute;
+  z-index: 30;
+  right: 28px;
+  bottom: 26px;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgb(151 174 201 / 24%);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 84%);
+  box-shadow: 0 16px 34px rgb(61 87 119 / 10%);
+  backdrop-filter: blur(14px);
+}
+
+.visual-asset-gate__controls button {
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 9px;
+  color: #496079;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+}
+
+.visual-asset-gate__controls button:hover,
+.visual-asset-gate__controls button[aria-pressed='true'] {
+  color: #176fca;
+  background: #edf6ff;
+}
+
+.visual-asset-gate__note {
+  position: absolute;
+  z-index: 30;
+  bottom: 29px;
+  left: 34px;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.visual-asset-gate__note strong { font-size: 12px; }
+.visual-asset-gate__note span { margin-top: 3px; color: #8392a5; font-size: 10px; }
+
+.visual-asset-gate--capture .visual-asset-gate__controls,
+.visual-asset-gate--capture .visual-asset-gate__note,
+.visual-asset-gate--capture .react-flow__attribution {
+  display: none;
+}

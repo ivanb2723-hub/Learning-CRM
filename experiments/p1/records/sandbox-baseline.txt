@@ -1,0 +1,9 @@
+created_at=2026-10-12T21:03:58.7569237+08:00
+baseline_snapshot=local-protected-snapshot-20261012/workspace
+baseline_manifest=local-protected-snapshot-20261012/verification/backup-sha256-v3.csv
+snapshot_files_verified=999
+sandbox=local-p1-compatibility-sandbox
+sample_source=local-input/P1_最小新知识结构兼容性样本包.md
+sample_sha256=F3269545F890FC4326348F51FDF283F283EAA989E388EBF54D2DED083FEC1345
+original_workspace_not_used_for_experiments=true
+intended_origin=http://127.0.0.1:5275

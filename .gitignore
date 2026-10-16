@@ -1,0 +1,15 @@
+node_modules/
+dist/
+dist-ssr/
+*.tsbuildinfo
+*.log
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/
+.pages-deploy-*/
+.sites-publish-*/
+qa/s1-phase1/edge-profile/

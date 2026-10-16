@@ -1,0 +1,134 @@
+.direction-c-proof {
+  display: grid;
+  width: 100%;
+  min-width: 1180px;
+  height: 100%;
+  min-height: 840px;
+  place-items: center;
+  overflow: hidden;
+  background: #eef4fa;
+}
+
+.direction-c-proof__canvas {
+  position: relative;
+  width: min(100vw, calc(100vh * 1.405482));
+  aspect-ratio: 1487 / 1058;
+  overflow: hidden;
+  background: white;
+}
+
+.direction-c-proof__reference,
+.direction-c-proof__actual,
+.direction-c-replica {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.direction-c-proof--overlay .direction-c-proof__reference,
+.direction-c-proof--overlay .direction-c-proof__actual { opacity: 0.5; }
+.direction-c-proof--overlay .direction-c-proof__actual { z-index: 2; }
+
+.direction-c-proof__controls {
+  position: fixed;
+  z-index: 20;
+  right: 20px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgb(122 148 178 / 25%);
+  border-radius: 12px;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 10px 30px rgb(43 68 98 / 12%);
+  backdrop-filter: blur(12px);
+}
+
+.direction-c-proof__controls a,
+.direction-c-proof__controls span {
+  padding: 7px 10px;
+  border-radius: 8px;
+  color: #486078;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.direction-c-proof__controls a:hover { background: #edf5ff; color: #176dcc; }
+.direction-c-proof__controls span { color: #8997a8; }
+
+.dc-fabric-top { fill: url(#dc-white-top); stroke: #9cb4ce; stroke-opacity: 0.42; stroke-width: 1.1; stroke-linejoin: round; }
+.dc-side-front { fill: url(#dc-white-front); stroke: #9ab1ca; stroke-opacity: 0.4; stroke-width: 1; }
+.dc-side-right { fill: url(#dc-white-side); stroke: #8ca5c0; stroke-opacity: 0.4; stroke-width: 1; }
+.dc-neck { fill: url(#dc-white-top); stroke: #a3b9d0; stroke-opacity: 0.34; stroke-width: 1; }
+.dc-field { stroke-width: 1; stroke-linejoin: round; }
+.dc-field--business { fill: url(#dc-business-field); fill-opacity: 0.82; stroke: #e7a446; stroke-opacity: 0.34; }
+.dc-field--resources { fill: url(#dc-resource-field); fill-opacity: 0.82; stroke: #5a9ee9; stroke-opacity: 0.3; }
+.dc-field--capability { fill: url(#dc-capability-field); fill-opacity: 0.82; stroke: #8069e8; stroke-opacity: 0.3; }
+.dc-field--runtime { fill: url(#dc-runtime-field); fill-opacity: 0.82; stroke: #18aa9c; stroke-opacity: 0.3; }
+.dc-rim { fill: none; stroke-width: 2; stroke-linejoin: round; opacity: 0.55; }
+.dc-rim--business { stroke: #e8a348; }
+.dc-rim--resources { stroke: #5a9ee9; }
+.dc-rim--capability { stroke: #8069e8; }
+.dc-rim--runtime { stroke: #18aa9c; }
+.dc-lane { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 8; opacity: 0.8; }
+.dc-lane--business { stroke: #efa33b; }
+.dc-lane--resources { stroke: #4d98ea; }
+.dc-lane--capability { stroke: #8067e8; }
+.dc-lane--runtime { stroke: #18ac9e; }
+.dc-port-casing rect { fill: #dceefe; stroke: #6aa7e8; stroke-width: 1.2; }
+
+.dc-core-base-front { fill: #9ec9ef; stroke: #4e91d7; stroke-width: 1.2; }
+.dc-core-base-top { fill: #edf7ff; stroke: #4f94dc; stroke-width: 1.3; }
+.dc-core-base-rim { fill: none; stroke: #2f80ed; stroke-opacity: 0.48; stroke-width: 1.5; }
+.dc-core-left { fill: url(#dc-core-left); stroke: #2f80ed; stroke-width: 1.5; }
+.dc-core-right { fill: url(#dc-core-right); stroke: #2f80ed; stroke-width: 1.5; }
+.dc-core-top { fill: #fff; stroke: #2f80ed; stroke-width: 1.5; }
+.dc-core-band { fill: #62a7e9; fill-opacity: 0.92; stroke: #2f80ed; stroke-width: 1.2; }
+.dc-control-left { fill: #e3f2ff; stroke: #3f8bd8; }
+.dc-control-right { fill: #69ace9; stroke: #2f80ed; }
+.dc-control-top { fill: #fff; stroke: #3f8bd8; }
+.dc-core-title { fill: #102b4f; font-size: 20px; font-weight: 800; }
+.dc-core-ports circle { fill: #2f80ed; stroke: #fff; stroke-width: 3; }
+
+.dc-module-top { fill: #fff; stroke: #98adc5; stroke-opacity: 0.58; stroke-width: 1; }
+.dc-module-left { fill: #eef3f8; stroke: #8da5bf; stroke-opacity: 0.56; stroke-width: 1; }
+.dc-module-right { fill: #d3deea; stroke: #829bb7; stroke-opacity: 0.58; stroke-width: 1; }
+.dc-business-stroke { stroke: #d69a3d; }
+.dc-business-windows { fill: none; stroke: #9aaabd; stroke-width: 3; opacity: 0.72; }
+.dc-business-accent { fill: none; stroke: #f3a53a; stroke-width: 5; }
+.dc-rack-face { fill: #b7cbe0; }
+.dc-rack-lines { fill: none; stroke: #607f9e; stroke-width: 2; opacity: 0.7; }
+.dc-cylinder path:first-child { fill: #dce7f2; stroke: #75a1d3; stroke-width: 1.2; }
+.dc-cylinder ellipse { fill: #f9fcff; stroke: #75a1d3; stroke-width: 1.2; }
+.dc-cylinder path:last-child { fill: none; stroke: #4d98ea; stroke-width: 2.5; }
+.dc-resource-path { fill: none; stroke: #18a999; stroke-linejoin: round; stroke-width: 4; }
+.dc-capability-face { fill: #a99de2; }
+.dc-gear { fill: #826ae8; }
+.dc-capability-path { fill: none; stroke: #8067e8; stroke-linecap: round; stroke-linejoin: round; stroke-width: 4; }
+.dc-runtime-face { fill: #9ed4d0; }
+.dc-runtime-status { fill: none; stroke: #18a999; stroke-linecap: round; stroke-width: 3; }
+.dc-runtime-indicator { fill: #18a999; stroke: white; stroke-width: 1.5; }
+.dc-runtime-path { fill: none; stroke: #18a999; stroke-linejoin: round; stroke-width: 4; }
+.dc-state-node { fill: #18a999; stroke: white; stroke-width: 2; }
+
+.dc-governance-plane { fill: url(#dc-governance); }
+.dc-governance-spine { fill: none; stroke: #5ca7eb; stroke-dasharray: 2 8; stroke-linecap: round; stroke-width: 1.5; opacity: 0.65; }
+.dc-governance-dot { fill: #5ca7eb; stroke: white; stroke-width: 2; }
+
+.dc-page-title { fill: #102441; font-size: 31px; font-weight: 800; letter-spacing: -0.7px; }
+.dc-page-subtitle { fill: #536984; font-size: 22px; font-weight: 500; }
+.dc-page-subtitle tspan { fill: #71829a; font-weight: 400; }
+.dc-annotation path { fill: none; stroke-width: 1.5; }
+.dc-annotation circle { stroke: white; stroke-width: 2; }
+.dc-annotation text { fill: #102441; font-family: Inter, "Microsoft YaHei", sans-serif; }
+.dc-annotation .zh { font-size: 21px; font-weight: 760; }
+.dc-annotation .en { fill: #5f7190; font-size: 17px; font-weight: 450; }
+.dc-annotation--business path { stroke: #f39a25; }.dc-annotation--business circle { fill: #f39a25; }
+.dc-annotation--resources path { stroke: #2f80ed; }.dc-annotation--resources circle { fill: #2f80ed; }
+.dc-annotation--capability path { stroke: #8067e8; }.dc-annotation--capability circle { fill: #8067e8; }
+.dc-annotation--runtime path { stroke: #18a999; }.dc-annotation--runtime circle { fill: #18a999; }
+.dc-annotation--governance path { stroke: #2f80ed; }.dc-annotation--governance circle { fill: #2f80ed; }
+.dc-annotation--governance .zh { font-size: 16px; }.dc-annotation--governance .en { font-size: 13px; }

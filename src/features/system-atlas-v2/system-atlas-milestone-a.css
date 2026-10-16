@@ -1,0 +1,697 @@
+:root {
+  --shell-ink: #102441;
+  --shell-muted: #708198;
+  --shell-line: rgb(129 157 187 / 22%);
+  --shell-blue: #2f80ed;
+}
+
+.milestone-atlas {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 760px;
+  overflow: hidden;
+  color: var(--shell-ink);
+  background: #f4f8fc;
+}
+
+.milestone-shell__header {
+  position: absolute;
+  z-index: 30;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  height: 88px;
+  grid-template-columns: minmax(360px, 1fr) auto minmax(260px, 1fr);
+  align-items: center;
+  padding: 0 32px;
+  border-bottom: 1px solid var(--shell-line);
+  background: rgb(249 252 255 / 94%);
+  backdrop-filter: blur(18px);
+}
+
+.milestone-shell__brand { display: flex; align-items: center; gap: 14px; }
+.milestone-shell__brand-mark {
+  display: grid;
+  width: 43px;
+  height: 43px;
+  place-items: center;
+  border: 1px solid rgb(47 128 237 / 22%);
+  border-radius: 12px;
+  color: #2475d3;
+  background: #edf6ff;
+  font-size: 11px;
+  font-weight: 820;
+  letter-spacing: 0.09em;
+}
+.milestone-shell__brand strong,
+.milestone-shell__brand small { display: block; }
+.milestone-shell__brand strong { font-size: 17px; font-weight: 760; letter-spacing: -0.025em; }
+.milestone-shell__brand small { margin-top: 4px; color: var(--shell-muted); font-size: 11px; }
+
+.milestone-shell__mode-summary { display: flex; align-items: baseline; gap: 10px; }
+.milestone-shell__mode-summary > span { color: var(--shell-blue); font-size: 12px; font-weight: 820; }
+.milestone-shell__mode-summary strong { font-size: 15px; font-weight: 760; }
+.milestone-shell__mode-summary small { color: var(--shell-muted); font-size: 11px; }
+.milestone-shell__header > p { margin: 0; color: #6e7f95; font-size: 11px; text-align: right; }
+
+.milestone-shell__sidebar {
+  position: absolute;
+  z-index: 24;
+  top: 88px;
+  bottom: 38px;
+  left: 0;
+  display: flex;
+  width: 178px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 18px 22px;
+  border-right: 1px solid var(--shell-line);
+  background: rgb(248 251 254 / 91%);
+}
+
+.milestone-shell__sidebar nav { display: grid; gap: 7px; }
+.milestone-shell__sidebar button {
+  display: grid;
+  min-height: 54px;
+  grid-template-columns: 27px 1fr;
+  grid-template-rows: 22px 16px;
+  align-items: center;
+  padding: 7px 10px;
+  border: 0;
+  border-left: 2px solid transparent;
+  color: #66778e;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+}
+.milestone-shell__sidebar button > span { grid-row: 1 / 3; color: #9aa8b9; font-size: 9px; font-weight: 760; }
+.milestone-shell__sidebar button small { color: #9aa7b8; font-size: 9px; }
+.milestone-shell__sidebar button.is-active {
+  border-left-color: var(--shell-blue);
+  color: #1d65bc;
+  background: #edf6ff;
+  font-weight: 720;
+}
+.milestone-shell__sidebar button:disabled { opacity: 0.62; }
+.milestone-shell__sidebar-note { padding: 14px 7px 2px; border-top: 1px solid var(--shell-line); }
+.milestone-shell__sidebar-note span,
+.milestone-shell__sidebar-note strong,
+.milestone-shell__sidebar-note small { display: block; }
+.milestone-shell__sidebar-note span { color: #91a0b3; font-size: 8px; letter-spacing: 0.14em; }
+.milestone-shell__sidebar-note strong { margin-top: 4px; color: #49617d; font-size: 10px; letter-spacing: 0.06em; }
+.milestone-shell__sidebar-note small { margin-top: 9px; color: #8795a7; font-size: 9px; line-height: 1.55; }
+
+.milestone-shell__workspace {
+  position: absolute;
+  z-index: 1;
+  top: 88px;
+  right: 0;
+  bottom: 38px;
+  left: 178px;
+  overflow: hidden;
+  background: #f7fafd;
+}
+.milestone-shell__workspace::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: linear-gradient(rgb(77 118 160 / 0.045) 1px, transparent 1px), linear-gradient(90deg, rgb(77 118 160 / 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  content: '';
+  pointer-events: none;
+}
+.milestone-shell__workspace .react-flow { z-index: 1; }
+.milestone-shell__workspace > .react-flow,
+.milestone-shell__workspace > .s1-preview--embedded { transform-origin: center center; }
+.milestone-atlas.is-surface-out .milestone-shell__workspace > .react-flow,
+.milestone-atlas.is-surface-out .milestone-shell__workspace > .s1-preview--embedded {
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 260ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.milestone-atlas.is-surface-in .milestone-shell__workspace > .react-flow,
+.milestone-atlas.is-surface-in .milestone-shell__workspace > .s1-preview--embedded {
+  animation: milestone-surface-enter 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: none;
+}
+@keyframes milestone-surface-enter {
+  from { opacity: 0; transform: scale(0.985); }
+  to { opacity: 1; transform: scale(1); }
+}
+.milestone-shell__knowledge-entry { position: absolute; z-index: 15; top: 190px; left: calc(50% + 280px); display: inline-flex; align-items: center; gap: 7px; min-height: 31px; padding: 0 12px; border: 1px solid rgb(91 151 213 / 31%); border-radius: 999px; color: #276eaf; background: rgb(255 255 255 / 87%); box-shadow: 0 4px 13px rgb(70 113 155 / 8%); font: inherit; font-size: 11px; font-weight: 650; cursor: pointer; white-space: nowrap; }
+.milestone-shell__knowledge-entry:hover, .milestone-shell__knowledge-entry:focus-visible { border-color: #6ca9e2; background: #f4faff; }
+.milestone-shell__knowledge-entry span { color: #72a5d6; font-size: 12px; }
+@media (max-width: 900px) { .milestone-shell__knowledge-entry { top: 110px; right: 16px; left: auto; } }
+.milestone-shell__workspace .react-flow__pane { cursor: grab; }
+.milestone-shell__workspace .react-flow__pane:active { cursor: grabbing; }
+.milestone-shell__workspace .react-flow__node-atlasAsset {
+  z-index: 3 !important;
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1), width 720ms cubic-bezier(0.22, 1, 0.36, 1), height 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.milestone-shell__workspace .react-flow__node-atlasAsset:has(.milestone-atlas-node--core) { z-index: 8 !important; }
+.milestone-atlas--layered .react-flow__node-atlasAsset:has(.milestone-atlas-node--business) { z-index: 5 !important; }
+.milestone-atlas--layered .react-flow__node-atlasAsset:has(.milestone-atlas-node--capability) { z-index: 6 !important; }
+.milestone-atlas--layered .react-flow__node-atlasAsset:has(.milestone-atlas-node--runtime) { z-index: 7 !important; }
+.milestone-atlas--layered .react-flow__node-atlasAsset:has(.milestone-atlas-node--resources) { z-index: 8 !important; }
+.milestone-atlas--layered .react-flow__node-atlasAsset:has(.milestone-atlas-node--core) { z-index: 10 !important; }
+.milestone-shell__workspace .react-flow__attribution { opacity: 0.36; font-size: 8px; }
+
+.milestone-shell__view-switch {
+  position: absolute;
+  z-index: 22;
+  top: 18px;
+  right: 22px;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--shell-line);
+  border-radius: 10px;
+  background: rgb(255 255 255 / 86%);
+  box-shadow: 0 12px 32px rgb(57 82 111 / 7%);
+  backdrop-filter: blur(14px);
+}
+.milestone-shell__view-switch button {
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 7px;
+  color: #667a92;
+  background: transparent;
+  font: inherit;
+  font-size: 10px;
+  cursor: pointer;
+}
+.milestone-shell__view-switch button span { margin-right: 5px; color: #8b9aab; font-weight: 820; }
+.milestone-shell__view-switch button.is-active { color: #176dcb; background: #eaf4ff; font-weight: 720; }
+.milestone-shell__view-switch button.is-active span { color: #176dcb; }
+
+.milestone-shell__state-note {
+  position: absolute;
+  z-index: 18;
+  right: 22px;
+  bottom: 26px;
+  display: grid;
+  width: 250px;
+  grid-template-columns: 34px 1fr;
+  padding: 14px 16px;
+  border-left: 2px solid rgb(47 128 237 / 55%);
+  color: #304a68;
+  background: rgb(249 252 255 / 84%);
+  box-shadow: 0 16px 38px rgb(56 81 109 / 8%);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+.milestone-shell__state-note > span { grid-row: 1 / 3; color: #2f80ed; font-size: 13px; font-weight: 820; }
+.milestone-shell__state-note strong,
+.milestone-shell__state-note small { display: block; }
+.milestone-shell__state-note strong { font-size: 12px; }
+.milestone-shell__state-note small { margin-top: 2px; color: #8290a2; font-size: 9px; }
+.milestone-shell__state-note p { grid-column: 2; margin: 8px 0 0; color: #718198; font-size: 9px; line-height: 1.5; }
+
+.milestone-shell__footer {
+  position: absolute;
+  z-index: 30;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  height: 38px;
+  align-items: center;
+  gap: 11px;
+  padding: 0 30px 0 202px;
+  border-top: 1px solid var(--shell-line);
+  color: #8492a4;
+  background: #f8fbfe;
+  font-size: 9px;
+}
+.milestone-shell__footer i { width: 34px; height: 1px; background: #cbd8e5; }
+.milestone-shell__footer strong { color: #4d6581; font-weight: 680; }
+
+.milestone-atlas-structure {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 940px;
+  pointer-events: none;
+}
+.milestone-atlas-structure__fabric,
+.milestone-atlas-structure__scaffold {
+  position: absolute;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 23px rgb(54 78 107 / 10%));
+  transition: opacity 450ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.milestone-atlas-structure__fabric { top: 50px; left: 148px; width: 1140px; height: 810px; opacity: 1; transform: scale(1); }
+.milestone-atlas-structure--overview .milestone-atlas-structure__fabric { filter: none; }
+.milestone-atlas-structure__scaffold { z-index: 1; top: 59px; left: 396px; width: 648px; height: 709px; opacity: 0; transform: translateY(30px) scale(0.9); }
+.milestone-atlas-structure--layered .milestone-atlas-structure__fabric { opacity: 0; transform: scale(0.72); }
+.milestone-atlas-structure--layered .milestone-atlas-structure__scaffold { opacity: 1; transform: translateY(0) scale(1); }
+.milestone-atlas--structure-v2 .milestone-atlas-structure--layered .milestone-atlas-structure__scaffold {
+  opacity: 0;
+  transform: translateY(24px) scale(0.94);
+}
+.milestone-atlas-structure__v2 {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  width: 1440px;
+  height: 940px;
+  overflow: visible;
+  pointer-events: none;
+}
+.milestone-atlas-structure__v2-rear path {
+  fill: none;
+  stroke: rgb(107 156 202 / 25%);
+  stroke-linecap: round;
+  stroke-width: 4px;
+}
+.milestone-atlas-structure__v2-rear rect {
+  fill: url(#a-v2-spine);
+  stroke: rgb(77 144 208 / 34%);
+  stroke-width: 1px;
+  filter: drop-shadow(0 5px 9px rgb(57 102 146 / 13%));
+}
+.milestone-atlas-structure__v2-rear circle {
+  fill: #eef7ff;
+  stroke: #5b9ddd;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__v2-deck .is-top-face {
+  fill: url(#a-v2-deck-top);
+  stroke: rgb(111 151 188 / 30%);
+  stroke-width: 1.1px;
+}
+.milestone-atlas-structure__v2-deck .is-front-face,
+.milestone-atlas-structure__v2-deck .is-left-face,
+.milestone-atlas-structure__v2-deck .is-right-face {
+  fill: url(#a-v2-deck-front);
+  stroke: rgb(105 145 181 / 25%);
+  stroke-width: 0.9px;
+}
+.milestone-atlas-structure__v2-deck.is-runtime .is-top-face {
+  fill: rgb(241 247 252 / 96%);
+}
+.milestone-atlas-structure__v2-debug { display: none; }
+.milestone-atlas--alignment-debug.milestone-atlas--structure-v2 .milestone-atlas-structure__v2-debug {
+  display: block;
+}
+.milestone-atlas-structure__v2-debug polygon,
+.milestone-atlas-structure__v2-debug path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+.milestone-atlas-structure__v2-debug .is-spine-axis {
+  stroke: #1878d1;
+  stroke-dasharray: 10 7;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__v2-debug .is-deck-quad {
+  fill: rgb(47 128 237 / 5%);
+  stroke: #2f80ed;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__v2-debug .is-support-envelope {
+  fill: rgb(15 169 157 / 10%);
+  stroke: #0fa99d;
+  stroke-dasharray: 7 5;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__v2-debug .is-deck-center {
+  fill: #dc4b91;
+  stroke: white;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__v2-debug .is-layer-spacing {
+  stroke: #e28b2f;
+  stroke-dasharray: 5 5;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__v2-debug text {
+  fill: #24496c;
+  font-size: 12px;
+  font-weight: 720;
+}
+.milestone-atlas--structure-v2.milestone-atlas--layered .milestone-atlas-structure__spine-extension {
+  opacity: 0;
+}
+.milestone-atlas--structure-v2.milestone-atlas--layered .milestone-atlas-node--business .milestone-atlas-node__annotation { top: -46px; }
+.milestone-atlas--structure-v2.milestone-atlas--layered .milestone-atlas-node--capability .milestone-atlas-node__annotation { top: -48px; }
+.milestone-atlas--structure-v2.milestone-atlas--layered .milestone-atlas-node--runtime .milestone-atlas-node__annotation { top: -51px; }
+.milestone-atlas--structure-v2.milestone-atlas--layered .milestone-atlas-node--resources .milestone-atlas-node__annotation { top: -74px; }
+.milestone-atlas-structure__l3-solid-plane {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 1440px;
+  height: 940px;
+  overflow: visible;
+  pointer-events: none;
+}
+.milestone-atlas-structure__l3-solid-plane .is-top-face {
+  fill: url(#l3-solid-plane-top);
+  stroke: rgb(126 157 189 / 32%);
+  stroke-width: 1.2px;
+}
+.milestone-atlas-structure__l3-solid-plane .is-front-face,
+.milestone-atlas-structure__l3-solid-plane .is-left-face {
+  fill: url(#l3-solid-plane-front);
+  stroke: rgb(126 157 189 / 26%);
+  stroke-width: 1px;
+}
+.milestone-atlas-structure__l3-plane-debug polygon {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+.milestone-atlas-structure__l3-plane-debug .is-plane-quad {
+  stroke: #277fdb;
+  stroke-dasharray: 8 5;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__l3-plane-debug .is-footprint-quad {
+  stroke: #c94b91;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__l3-axis-debug polygon,
+.milestone-atlas-structure__l3-axis-debug path,
+.milestone-atlas-structure__l3-geometry-debug polygon,
+.milestone-atlas-structure__l3-coverage-debug polygon {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+.milestone-atlas-structure__l3-axis-debug polygon {
+  stroke: #12a7a0;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__l3-axis-debug path {
+  stroke-width: 2px;
+  stroke-dasharray: 10 7;
+}
+.milestone-atlas-structure__l3-axis-debug .is-axis-a { stroke: #e28b2f; }
+.milestone-atlas-structure__l3-axis-debug .is-axis-b { stroke: #805fdd; }
+.milestone-atlas-structure__l3-axis-debug circle,
+.milestone-atlas-structure__l3-geometry-debug .is-center {
+  fill: #1878d1;
+  stroke: white;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__l3-geometry-debug .is-inner-quad {
+  stroke: #12a7a0;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__l3-geometry-debug .is-gate04-quad {
+  stroke: #e28b2f;
+  stroke-dasharray: 8 6;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__l3-geometry-debug .is-gate05-quad {
+  stroke: #277fdb;
+  stroke-width: 3px;
+}
+.milestone-atlas-structure__l3-coverage-debug .is-platform-quad {
+  stroke: #277fdb;
+  stroke-width: 3px;
+}
+.milestone-atlas-structure__l3-coverage-debug .is-coverage-area {
+  fill: rgb(201 75 145 / 12%);
+  stroke: #c94b91;
+  stroke-dasharray: 7 5;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__l3-coverage-debug circle {
+  fill: #c94b91;
+  stroke: white;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__spine-extension {
+  position: absolute;
+  top: 640px;
+  left: 728px;
+  width: 7px;
+  height: 280px;
+  border: 1px solid rgb(68 144 226 / 26%);
+  background: rgb(101 174 242 / 16%);
+  box-shadow: 0 0 18px rgb(47 128 237 / 11%);
+  opacity: 0;
+  transition: opacity 260ms 280ms ease;
+}
+.milestone-atlas-structure--layered .milestone-atlas-structure__spine-extension { opacity: 1; }
+
+.milestone-atlas-structure__governance { position: absolute; inset: 0; width: 1440px; height: 940px; opacity: 0.66; transition: opacity 360ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1); }
+.milestone-atlas-structure__governance path { fill: none; stroke: #539ce5; stroke-dasharray: 3 11; stroke-linecap: round; stroke-width: 1.4; opacity: 0.56; }
+.milestone-atlas-structure__governance circle { fill: #4e9be6; stroke: white; stroke-width: 2; }
+.milestone-atlas-structure--layered .milestone-atlas-structure__governance { opacity: 0.48; transform: translateX(16px) rotate(-3deg); transform-origin: center; }
+.milestone-atlas-structure__governance-label { position: absolute; right: 56px; bottom: 80px; padding-left: 12px; border-left: 2px solid rgb(76 151 227 / 38%); }
+.milestone-atlas-structure__governance-label strong,
+.milestone-atlas-structure__governance-label small,
+.milestone-atlas-structure__governance-label span { display: block; }
+.milestone-atlas-structure__governance-label strong { color: #294c70; font-size: 13px; }
+.milestone-atlas-structure__governance-label small { margin-top: 3px; color: #71839a; font-size: 9px; }
+.milestone-atlas-structure__governance-label span { margin-top: 7px; color: #9aa7b6; font-size: 8px; }
+.milestone-atlas-structure--overview .milestone-atlas-structure__governance-label { right: 160px; bottom: 220px; }
+.milestone-atlas-structure--layered .milestone-atlas-structure__governance-label { right: 120px; bottom: 108px; }
+
+.milestone-atlas-structure__registration-debug {
+  position: absolute;
+  z-index: 14;
+  inset: 0;
+  display: none;
+  width: 1440px;
+  height: 940px;
+  overflow: visible;
+  pointer-events: none;
+}
+.milestone-atlas--alignment-debug .milestone-atlas-structure__registration-debug { display: block; }
+.milestone-atlas-structure__registration-debug g { opacity: 0; }
+.milestone-atlas-structure__registration-debug g.is-debug-target { opacity: 1; }
+.milestone-atlas-structure__registration-debug .is-layer-surface {
+  fill: rgb(47 128 237 / 5%);
+  stroke: #2f80ed;
+  stroke-dasharray: 9 7;
+  stroke-width: 2px;
+}
+.milestone-atlas-structure__registration-debug .is-contact-plane {
+  fill: rgb(15 169 157 / 12%);
+  stroke: #0fa99d;
+  stroke-width: 2px;
+}
+
+.milestone-atlas-front-rims {
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 940px;
+  overflow: visible;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+.milestone-atlas-front-rims--layered { opacity: 1; }
+.milestone-atlas-front-rims image { pointer-events: none; }
+
+.milestone-atlas-overview-core-rim {
+  position: absolute;
+  z-index: 12;
+  inset: 0;
+  width: 1440px;
+  height: 940px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.milestone-atlas-node {
+  --node-accent: #2f80ed;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.milestone-atlas-node__asset {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 17px 15px rgb(49 76 108 / 13%));
+  transform: translate(var(--asset-offset-x), var(--asset-offset-y)) rotate(var(--asset-rotation, 0deg)) scale(var(--asset-scale));
+  transform-origin: var(--visual-center-x) var(--visual-center-y);
+  transition: filter 220ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  user-select: none;
+}
+.milestone-atlas-node:hover .milestone-atlas-node__asset,
+.milestone-atlas-node.is-selected .milestone-atlas-node__asset { filter: drop-shadow(0 19px 17px color-mix(in srgb, var(--node-accent), transparent 75%)); }
+.milestone-atlas-node--overview.milestone-atlas-node--core .milestone-atlas-node__asset,
+.milestone-atlas-node--overview.milestone-atlas-node--core:hover .milestone-atlas-node__asset,
+.milestone-atlas-node--overview.milestone-atlas-node--core.is-selected .milestone-atlas-node__asset {
+  /* The approved baked S0 owns the Core visual. Keep this node as its logical
+     React Flow hotspot without painting a second Core above the socket. */
+  visibility: hidden;
+}
+.milestone-atlas--overview .milestone-atlas-node--core .milestone-atlas-node__focus { visibility: hidden; }
+
+.milestone-atlas-node__registered-surface {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+  transform-origin: 0 0;
+  user-select: none;
+}
+.milestone-atlas-node__registered-asset {
+  filter: drop-shadow(0 17px 15px rgb(49 76 108 / 13%));
+  pointer-events: none;
+  transition: filter 220ms ease;
+}
+.milestone-atlas-node__interaction-hull {
+  fill: rgb(255 255 255 / 0.001);
+  stroke: transparent;
+  stroke-width: 20px;
+  cursor: pointer;
+  pointer-events: all;
+}
+.milestone-atlas-node__registered-focus {
+  fill: color-mix(in srgb, var(--node-accent), transparent 91%);
+  stroke: var(--node-accent);
+  stroke-width: 7px;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+.milestone-atlas-node__registered-surface:has(.milestone-atlas-node__interaction-hull:hover) .milestone-atlas-node__registered-asset,
+.milestone-atlas-node.is-selected .milestone-atlas-node__registered-asset {
+  filter: drop-shadow(0 19px 17px color-mix(in srgb, var(--node-accent), transparent 70%));
+}
+.milestone-atlas-node__registered-surface:has(.milestone-atlas-node__interaction-hull:hover) .milestone-atlas-node__registered-focus,
+.milestone-atlas-node.is-selected .milestone-atlas-node__registered-focus { opacity: 0.34; }
+.milestone-atlas-node__source-footprint {
+  fill: rgb(205 75 145 / 8%);
+  stroke: #c94b91;
+  stroke-width: 7px;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  pointer-events: none;
+}
+.milestone-atlas--alignment-debug .milestone-atlas-node__source-footprint { opacity: 1; }
+.milestone-atlas--alignment-debug .milestone-atlas-node__interaction-hull {
+  fill: rgb(128 104 232 / 5%);
+  stroke: #8068e8;
+  stroke-dasharray: 14 10;
+  stroke-width: 6px;
+  vector-effect: non-scaling-stroke;
+}
+
+.milestone-atlas-node__alignment-debug { display: none; position: absolute; inset: 0; z-index: 12; border: 1px dashed rgb(220 66 92 / 72%); pointer-events: none; }
+.milestone-atlas--alignment-debug .milestone-atlas-node__alignment-debug { display: block; }
+.milestone-atlas--alignment-debug .milestone-atlas-node--layered .milestone-atlas-node__alignment-debug { display: none; }
+.milestone-atlas-node__alignment-debug i { position: absolute; width: 9px; height: 9px; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 0 1px currentColor; transform: translate(-50%, -50%); }
+.milestone-atlas-node__alignment-debug .is-logical { top: 50%; left: 50%; color: #e04a63; background: #e04a63; }
+.milestone-atlas-node__alignment-debug .is-visual { top: calc(var(--visual-center-y) + var(--asset-offset-y)); left: calc(var(--visual-center-x) + var(--asset-offset-x)); color: #7b65e9; background: #7b65e9; }
+.milestone-atlas-node__alignment-debug .is-contact { top: calc(var(--ground-contact-y) + var(--asset-offset-y)); left: calc(var(--ground-contact-x) + var(--asset-offset-x)); color: #0ca99d; background: #0ca99d; }
+
+.milestone-atlas-node__focus {
+  position: absolute;
+  z-index: -1;
+  inset: 15% 12%;
+  border: 1px solid var(--node-accent);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--node-accent), transparent 94%);
+  transition: opacity 180ms ease;
+}
+.milestone-atlas-node.is-selected .milestone-atlas-node__focus { opacity: 0.26; }
+
+.milestone-atlas-node__annotation { position: absolute; z-index: 5; display: flex; min-width: 225px; align-items: center; gap: 8px; pointer-events: none; }
+.milestone-atlas-node__leader { width: 34px; height: 1px; background: var(--node-accent); opacity: 0.66; }
+.milestone-atlas-node__leader::before { display: block; width: 7px; height: 7px; margin-top: -3px; border: 2px solid white; border-radius: 50%; background: var(--node-accent); content: ''; }
+.milestone-atlas-node__copy strong,
+.milestone-atlas-node__copy small,
+.milestone-atlas-node__copy em { display: block; white-space: nowrap; }
+.milestone-atlas-node__copy strong { color: #163253; font-size: 14px; font-weight: 760; }
+.milestone-atlas-node__copy small { margin-top: 3px; color: #667a94; font-size: 10px; }
+.milestone-atlas-node__copy em { margin-top: 5px; color: #8c99a9; font-size: 8px; font-style: normal; }
+.milestone-atlas-node__layer { color: var(--node-accent); font-size: 10px; font-weight: 820; }
+.milestone-atlas-node--overview .milestone-atlas-node__layer { display: none; }
+
+.milestone-atlas-node--overview.milestone-atlas-node--business .milestone-atlas-node__annotation { top: 70px; left: 426px; }
+.milestone-atlas-node--overview.milestone-atlas-node--resources .milestone-atlas-node__annotation { top: -65px; left: 33px; flex-direction: row-reverse; text-align: right; }
+.milestone-atlas-node--overview.milestone-atlas-node--resources .milestone-atlas-node__leader::before { margin-left: 27px; }
+.milestone-atlas-node--overview.milestone-atlas-node--capability .milestone-atlas-node__annotation { top: -50px; left: 267px; }
+.milestone-atlas-node--overview.milestone-atlas-node--runtime .milestone-atlas-node__annotation { top: 170px; left: -212px; flex-direction: row-reverse; text-align: right; }
+.milestone-atlas-node--overview.milestone-atlas-node--runtime .milestone-atlas-node__leader::before { margin-left: 27px; }
+.milestone-atlas-node--overview.milestone-atlas-node--runtime .milestone-atlas-node__focus { display: none; }
+.milestone-atlas-node--overview.milestone-atlas-node--core .milestone-atlas-node__annotation { display: none; }
+
+.milestone-atlas-node--layered:not(.milestone-atlas-node--core) .milestone-atlas-node__annotation { left: -255px; justify-content: flex-end; text-align: right; }
+.milestone-atlas-node--layered.milestone-atlas-node--business .milestone-atlas-node__annotation { top: -55px; }
+.milestone-atlas-node--layered.milestone-atlas-node--capability .milestone-atlas-node__annotation { top: -58px; }
+.milestone-atlas-node--layered.milestone-atlas-node--runtime .milestone-atlas-node__annotation { top: -64px; }
+.milestone-atlas-node--layered.milestone-atlas-node--resources .milestone-atlas-node__annotation { top: -120px; }
+.milestone-atlas-node--layered:not(.milestone-atlas-node--core) .milestone-atlas-node__leader { order: 3; width: 42px; }
+.milestone-atlas-node--layered:not(.milestone-atlas-node--core) .milestone-atlas-node__leader::before { margin-left: 35px; }
+.milestone-atlas-node--layered .milestone-atlas-node__copy { min-width: 170px; }
+.milestone-atlas-node--layered.milestone-atlas-node--core .milestone-atlas-node__annotation { top: 53px; left: 190px; }
+
+.milestone-atlas--alignment-debug.milestone-atlas--layered .milestone-atlas-structure__scaffold { opacity: 0.34; }
+.milestone-atlas--alignment-debug.milestone-atlas--structure-v2.milestone-atlas--layered .milestone-atlas-structure__scaffold { opacity: 0; }
+.milestone-atlas--alignment-debug.milestone-atlas--layered .milestone-atlas-structure__governance,
+.milestone-atlas--alignment-debug.milestone-atlas--layered .milestone-atlas-structure__governance-label,
+.milestone-atlas--alignment-debug.milestone-atlas--layered .milestone-atlas-front-rims { opacity: 0.12; }
+.milestone-atlas--isolate-resources .react-flow__node-atlasAsset:not(:has(.milestone-atlas-node--resources)),
+.milestone-atlas--isolate-runtime .react-flow__node-atlasAsset:not(:has(.milestone-atlas-node--runtime)),
+.milestone-atlas--isolate-capability .react-flow__node-atlasAsset:not(:has(.milestone-atlas-node--capability)),
+.milestone-atlas--isolate-business .react-flow__node-atlasAsset:not(:has(.milestone-atlas-node--business)) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.milestone-atlas--plane-only .react-flow__node-atlasAsset,
+.milestone-atlas--plane-only .milestone-atlas-structure__governance,
+.milestone-atlas--plane-only .milestone-atlas-structure__governance-label,
+.milestone-atlas--plane-only .milestone-atlas-front-rims,
+.milestone-atlas--plane-only .milestone-atlas-structure__spine-extension {
+  opacity: 0 !important;
+}
+
+.milestone-atlas-node__core-action {
+  position: absolute;
+  right: 50%;
+  bottom: -7px;
+  padding: 5px 9px;
+  border: 1px solid rgb(47 128 237 / 18%);
+  border-radius: 999px;
+  color: #276fbf;
+  background: rgb(248 252 255 / 86%);
+  font-size: 8px;
+  font-weight: 720;
+  white-space: nowrap;
+  transform: translateX(50%);
+}
+.milestone-atlas-node--layered .milestone-atlas-node__core-action { right: 44%; bottom: 3px; }
+.milestone-atlas-node--overview .milestone-atlas-node__core-action { display: none; }
+
+.milestone-atlas.is-transitioning .milestone-shell__view-switch button { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .milestone-atlas.is-surface-out .milestone-shell__workspace > .react-flow,
+  .milestone-atlas.is-surface-out .milestone-shell__workspace > .s1-preview--embedded { transition-duration: 1ms; }
+  .milestone-atlas.is-surface-in .milestone-shell__workspace > .react-flow,
+  .milestone-atlas.is-surface-in .milestone-shell__workspace > .s1-preview--embedded { animation-duration: 1ms; }
+  .milestone-shell__workspace .react-flow__node-atlasAsset,
+  .milestone-atlas-structure__fabric,
+  .milestone-atlas-structure__scaffold,
+  .milestone-atlas-structure__governance,
+  .milestone-atlas-node__asset,
+  .milestone-atlas-node__registered-asset { transition-duration: 1ms; }
+}
