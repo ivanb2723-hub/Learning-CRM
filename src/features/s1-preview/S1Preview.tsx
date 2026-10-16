@@ -370,7 +370,7 @@ export function S1Preview({ embedded = false, onBack, experiment }: { embedded?:
         {embedded && <button type="button" className="s1-preview__back" onClick={onBack}>← 返回系统分层</button>}
         {focus.nodeCode && <button type="button" className="s1-preview__exit-focus" onClick={exitFocus}>退出聚焦 · 返回全图</button>}
         {isP1 ? <>
-          <a href="/?p1Path=1">客户分析学习路径</a>
+          <a href="?p1Path=1">客户分析学习路径</a>
           <button type="button" onClick={() => setOpenList((value) => value === 'primary' ? null : 'primary')} aria-expanded={openList === 'primary'}>P1 对象 <span>14</span></button>
           <button type="button" onClick={() => setOpenList((value) => value === 'case' ? null : 'case')} aria-expanded={openList === 'case'}>Case-01 测试入口</button>
         </> : <>

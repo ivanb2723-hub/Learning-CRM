@@ -90,7 +90,7 @@ export function P1LearningPath() {
           <button type="button" className={layer === 'l3' ? 'is-active' : ''} onClick={() => showLayer('l3')}>L3 实现</button>
           <button type="button" className={layer === 'l4' ? 'is-active' : ''} onClick={() => showLayer('l4')}>L4 面试</button>
         </nav>
-        <a href="/?view=s1&p1=1">返回 P1 知识地图</a>
+        <a href="?view=s1&p1=1">返回 P1 知识地图</a>
       </header>
 
       {layer === 'l2' && <main className="p1-path__layer p1-path__l2" aria-label="L2 功能">
